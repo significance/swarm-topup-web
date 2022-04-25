@@ -6,13 +6,13 @@ export const Profile = () => {
   const { connect } = useConnect({
     connector: new InjectedConnector(),
   });
-  //const { disconnect } = useDisconnect();
+  const { disconnect } = useDisconnect();
 
   if (data)
     return (
       <div>
         Connected to {data.address}
-        {/*<button onClick={() => disconnect()}> Disconnect</button>*/}
+        {" : "}<button onClick={() => disconnect()}> Disconnect</button>
       </div>
     );
   return <button onClick={() => connect()}>Connect Wallet</button>;

@@ -12,19 +12,19 @@ type TimeToLiveProps = {
 };
 
 export const TimeToLive = ({ batchId }: TimeToLiveProps) => {
-  const contractRead = useContractRead(
-    {
-      addressOrName: POSTAGE_STAMP_CONTRACT_ADDRESS,
-      contractInterface: abi,
-    },
-    "remainingBalance",
-    {
-      watch: true,
-      chainId: CHAIN_ID,
-      args: batchId,
-      enabled: !!batchId,
-    }
-  );
-  console.log(contractRead);
+  // const contractRead = useContractRead(
+  //   {
+  //     addressOrName: POSTAGE_STAMP_CONTRACT_ADDRESS,
+  //     contractInterface: abi,
+  //   },
+  //   "remainingBalance",
+  //   {
+  //     watch: true,
+  //     chainId: CHAIN_ID,
+  //     args: batchId,
+  //     enabled: !!batchId,
+  //   }
+  // );
+  // console.log(contractRead);
   return null;
 };
