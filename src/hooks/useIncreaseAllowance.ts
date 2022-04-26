@@ -1,13 +1,13 @@
-import { Signer } from "ethers";
-import { useBzzContract } from "./useBzzContract";
+import { Signer } from 'ethers'
+import { useBzzContract } from './useBzzContract'
 
 type UseIncreaseAllowanceProps = {
-  signer: Signer;
-};
+	signer: Signer
+}
 
 export const useIncreaseAllowance = ({ signer }: UseIncreaseAllowanceProps) => {
-  const contract = useBzzContract({
-    signerOrProvider: signer,
-  });
-  return contract.increaseAllowance;
-};
+	const contract = useBzzContract({
+		signerOrProvider: signer,
+	})
+	return contract.increaseAllowance
+}

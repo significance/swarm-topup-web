@@ -1,15 +1,15 @@
-import { Signer } from "ethers";
+import { Signer } from 'ethers'
 
 // Hooks
-import { useTopusePostageBatchContractUp } from "./usePostageBatchContract";
+import { useTopusePostageBatchContractUp } from './usePostageBatchContract'
 
 type UseTopUpProps = {
-  signer: Signer;
-};
+	signer: Signer
+}
 
 export const useTopUp = ({ signer }: UseTopUpProps) => {
-  const contract = useTopusePostageBatchContractUp({
-    signerOrProvider: signer,
-  });
-  return contract.topUp;
-};
+	const contract = useTopusePostageBatchContractUp({
+		signerOrProvider: signer,
+	})
+	return contract.topUp
+}
