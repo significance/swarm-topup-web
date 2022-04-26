@@ -123,7 +123,7 @@ const TopUp = () => {
 					<button type="submit">Top up</button>
 				</p>
 			</form>
-			<TimeToLive batchId={batchId} />
+			{/*<TimeToLive batchId={batchId} />*/}
 			<hr />
 			<p>
 				Once you have pressed the "Top up" button you will be asked to authorise
