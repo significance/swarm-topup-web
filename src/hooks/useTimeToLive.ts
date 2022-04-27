@@ -14,7 +14,7 @@ export const useTimeToLive = (batchId: string, watch = true) => {
 	return useMemo(() => {
 		return combineContractReads(
 			(...[balance, lastPrice]) => {
-				return lastPrice.data && balance.data?.div(lastPrice.data).div(5)
+				return lastPrice.data && balance.data?.div(lastPrice.data).mul(5)
 			},
 			balance,
 			lastPrice
