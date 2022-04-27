@@ -1,6 +1,9 @@
 import { useMemo } from 'preact/hooks'
 import { useContractRead } from 'wagmi'
 
+// Lib
+import { combineContractReads } from '../lib/wagmi'
+
 // Config
 import { POSTAGE_STAMP_CONTRACT_ADDRESS, WAGMI_CHAIN } from '../config'
 
@@ -27,11 +30,12 @@ export const useTimeToLive = (batchId: string, watch = true) => {
 	)
 
 	return useMemo(() => {
-		const data =
-			result.data && lastPrice.data && result.data.div(lastPrice.data).div(5)
-
-		return {
-			data,
-		}
-	}, [result.data, lastPrice.data])
+		return combineContractReads(
+			(...[result, lastPrice]) => {
+				return lastPrice.data && result.data?.div(lastPrice.data).div(5)
+			},
+			result,
+			lastPrice
+		)
+	}, [result, lastPrice])
 }
