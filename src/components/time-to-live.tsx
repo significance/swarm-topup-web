@@ -1,30 +1,22 @@
-import { useContractRead } from 'wagmi'
-import { ethers } from 'ethers'
+import { formatDuration, intervalToDuration } from 'date-fns'
 
-// Config
-import { CHAIN_ID, POSTAGE_STAMP_CONTRACT_ADDRESS } from '../config'
-
-// ABI
-import abi from '../data/abis/postage-batch.json'
+// Hooks
+import { useTimeToLive } from '../hooks/useTimeToLive'
 
 type TimeToLiveProps = {
 	batchId: string
 }
 
 export const TimeToLive = ({ batchId }: TimeToLiveProps) => {
-	// const contractRead = useContractRead(
-	//   {
-	//     addressOrName: POSTAGE_STAMP_CONTRACT_ADDRESS,
-	//     contractInterface: abi,
-	//   },
-	//   "remainingBalance",
-	//   {
-	//     watch: true,
-	//     chainId: CHAIN_ID,
-	//     args: batchId,
-	//     enabled: !!batchId,
-	//   }
-	// );
-	// console.log(contractRead);
-	return null
+	const ttl = useTimeToLive(batchId)
+	if (!ttl.data) {
+		return null
+	}
+
+	const duration = intervalToDuration({
+		start: new Date(0),
+		end: new Date(1000 * Number(ttl.data)),
+	})
+
+	return <div>Time to live: {formatDuration(duration)}</div>
 }

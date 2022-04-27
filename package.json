@@ -8,6 +8,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"date-fns": "^2.28.0",
 		"ethers": "^5.6.4",
 		"preact": "^10.5.15",
 		"wagmi": "^0.3.0"

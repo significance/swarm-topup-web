@@ -2,10 +2,14 @@ import { useState } from 'preact/hooks'
 import { Provider, createClient, useSigner } from 'wagmi'
 
 // Config
-import { POSTAGE_STAMP_CONTRACT_ADDRESS } from './config'
+import {
+	POSTAGE_STAMP_CONTRACT_ADDRESS,
+	WAGMI_CHAIN,
+	WAGMI_NETWORK,
+} from './config'
 
 // Types
-import { ethers, Signer } from 'ethers'
+import { Signer, providers } from 'ethers'
 
 // Components
 import { Profile } from './components/profile'
@@ -14,8 +18,24 @@ import { TimeToLive } from './components/time-to-live'
 // Hooks
 import { useTopUp } from './hooks/useTopUp'
 import { useIncreaseAllowance } from './hooks/useIncreaseAllowance'
+import { InjectedConnector } from 'wagmi/connectors/injected'
 
-const client = createClient({ autoConnect: true })
+const client = createClient({
+	autoConnect: true,
+	connectors: [
+		new InjectedConnector({
+			chains: [WAGMI_CHAIN],
+		}),
+	],
+	provider: new providers.JsonRpcProvider(
+		WAGMI_CHAIN.rpcUrls.default,
+		WAGMI_NETWORK
+	),
+	webSocketProvider: new providers.WebSocketProvider(
+		WAGMI_CHAIN.rpcUrls.websocket,
+		WAGMI_NETWORK
+	),
+})
 
 const TopUp = () => {
 	const [batchId, setBatchId] = useState<string>(
@@ -28,8 +48,6 @@ const TopUp = () => {
 
 	const doTopUp = useTopUp({ signer })
 	const doIncreaseAllowance = useIncreaseAllowance({ signer })
-
-	console.log({ doTopUp, doIncreaseAllowance })
 
 	// TODO: Type the event
 	const topUp = async (event: any) => {
@@ -123,7 +141,7 @@ const TopUp = () => {
 					<button type="submit">Top up</button>
 				</p>
 			</form>
-			{/*<TimeToLive batchId={batchId} />*/}
+			<TimeToLive batchId={batchId} />
 			<hr />
 			<p>
 				Once you have pressed the "Top up" button you will be asked to authorise
