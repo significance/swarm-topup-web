@@ -1,41 +1,23 @@
 import { useMemo } from 'preact/hooks'
-import { useContractRead } from 'wagmi'
 
 // Lib
 import { combineContractReads } from '../lib/wagmi'
 
-// Config
-import { POSTAGE_STAMP_CONTRACT_ADDRESS, WAGMI_CHAIN } from '../config'
-
-// ABI
-import abi from '../data/abis/postage-batch.json'
-
 // Hooks
 import { useLastPrice } from './useLastPrice'
+import { useRemainingBalance } from './useRemainingBalance'
 
 export const useTimeToLive = (batchId: string, watch = true) => {
 	const lastPrice = useLastPrice(watch)
-	const result = useContractRead(
-		{
-			addressOrName: POSTAGE_STAMP_CONTRACT_ADDRESS,
-			contractInterface: abi,
-		},
-		'remainingBalance',
-		{
-			watch,
-			chainId: WAGMI_CHAIN.id,
-			args: batchId,
-			enabled: !!batchId,
-		}
-	)
+	const balance = useRemainingBalance(batchId, watch)
 
 	return useMemo(() => {
 		return combineContractReads(
-			(...[result, lastPrice]) => {
-				return lastPrice.data && result.data?.div(lastPrice.data).div(5)
+			(...[balance, lastPrice]) => {
+				return lastPrice.data && balance.data?.div(lastPrice.data).div(5)
 			},
-			result,
+			balance,
 			lastPrice
 		)
-	}, [result, lastPrice])
+	}, [balance, lastPrice])
 }
