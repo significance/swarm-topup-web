@@ -25,7 +25,8 @@ export const useTimeToLive = (batchId: string, watch = true) => {
 			enabled: !!batchId,
 		}
 	)
-	console.log(result, lastPrice)
+	console.log(result.data, lastPrice.data)
+	const ttl = result.data.toNumber()/lastPrice.data.toNumber()*WAGMI_CHAIN.blockTime;
 	return useMemo(() => {
 		const data =
 			(result.data && lastPrice.data && result.data.div(lastPrice.data)) ||
@@ -33,5 +34,5 @@ export const useTimeToLive = (batchId: string, watch = true) => {
 		return {
 			data,
 		}
-	}, [result.data, lastPrice.data])
+	}, [ttl])
 }

@@ -14,6 +14,7 @@ export const WAGMI_CHAIN = {
 	rpcUrls: {
 		default: 'https://rpc.ankr.com/gnosis',
 	},
+	blockTime: 15,
 	blockExplorers: {
 		etherscan: BLOCK_EXPLORER,
 		default: BLOCK_EXPLORER,
