@@ -4,19 +4,23 @@ import { formatDuration, intervalToDuration } from 'date-fns'
 import { useTimeToLive } from '../hooks/useTimeToLive'
 
 type TimeToLiveProps = {
-	batchId: string
+	batchId: string,
+	amount?: number
 }
 
-export const TimeToLive = ({ batchId }: TimeToLiveProps) => {
-	const ttl = useTimeToLive(batchId)
+export const TimeToLive = ({ batchId, amount = 0 }: TimeToLiveProps) => {
+	const ttl = useTimeToLive(batchId, amount)
+
 	if (!ttl.data) {
 		return null
 	}
 
+	const projectedTtl = ttl.data.add(amount)
+
 	const duration = intervalToDuration({
 		start: new Date(0),
-		end: new Date(1000 * Number(ttl.data)),
+		end: new Date(1000 * Number(projectedTtl)),
 	})
 
-	return <div>Time to live: {formatDuration(duration)}</div>
+	return <div>{formatDuration(duration)}</div>
 }

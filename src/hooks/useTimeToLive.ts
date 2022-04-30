@@ -7,10 +7,13 @@ import { combineContractReads } from '../lib/wagmi'
 import { useLastPrice } from './useLastPrice'
 import { useRemainingBalance } from './useRemainingBalance'
 
-export const useTimeToLive = (batchId: string, watch = true) => {
+export const useTimeToLive = (
+	batchId: string,
+	amount: number,
+	watch = true
+) => {
 	const lastPrice = useLastPrice(watch)
 	const balance = useRemainingBalance(batchId, watch)
-
 	return useMemo(() => {
 		return combineContractReads(
 			(...[balance, lastPrice]) => {
