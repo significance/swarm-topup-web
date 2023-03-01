@@ -41,7 +41,7 @@ const client = createClient({
 
 const TopUp = () => {
 	const [batchId, setBatchId] = useState<string>(
-		'0x9da3a7813977b7722e59de8826077a44736116c4aa5c9f31676da812870a9039'
+		'0x7892d29daeb228f8e8122823c505237e03ec519a93a1ca834032ae4de4945239'
 	)
 	const [amount, setAmount] = useState<number>(1_000_000)
 
@@ -61,7 +61,7 @@ const TopUp = () => {
 
 	return (
 		<>
-			<h1>Fund the Hacker Manifesto Stamp</h1>
+			<h1>Fund the Stamp for "A Declaration of Independence of Cyberspace"</h1>
 			<p>
 				In the <a href="https://ethswarm.org">Swarm Network</a>, storage in the
 				network is paid for by attaching <em>postage stamps</em> to the{' '}
@@ -69,8 +69,8 @@ const TopUp = () => {
 				anyone to contribute BZZ towards a postage stamp, without permission.
 			</p>
 			<p>
-				The Hacker Manifesto has been uploaded to the Swarm network using
-				postage stamp batch ID <a href="#postage-stamp-batch-id">9da3...9039</a>{' '}
+				"A Declaration of Independence of Cyberspace" has been uploaded to the Swarm network using
+				postage stamp batch ID <a href="#postage-stamp-batch-id">7892....5239</a>{' '}
 				and is available to view or reference using the Swarm address{' '}
 				<a href="#hacker-manifesto-address">d755...f06f</a>.{' '}
 			</p>
@@ -78,27 +78,26 @@ const TopUp = () => {
 				You may retrieve and view it directly from the p2p network using a Swarm
 				node using the Bee software for which you can find installation and
 				usage directions at{' '}
-				<a href="https://ethswarm.org">https://ethswarm.org</a>, or view it
+				<a target="_blank" href="https://ethswarm.org">https://ethswarm.org</a>, or view it
 				using the <em>bzz.link</em> service{' '}
-				<a href="https://bah5acgza25k2uhs3fycz64at3pow4eju7paas5wfevgbo2tu54spdtta6bxq.bzz.link/">
+				<a target="_blank" href="https://bah5acgzalf5lrn3dcamukmw27q4evvagcmcazu7th5mxqhlvedwmfarhjopa.bzz.link/">
 					by clicking here.
 				</a>
 			</p>
 			<h2>Stamp Status</h2>
 			<p>
-				The Hacker Manifesto Stamp will expire unless it is topped up. It's
+				The postage batch for "A Declaration of Independence of Cyberspace" will expire unless it is topped up. It's
 				current time to live is:{' '}
 			</p>{' '}
 			<TimeToLive batchId={batchId} />
 			<p>
-				Like minded individuals are encouraged to contribute BZZ to the Hacker
-				Manifesto Stamp so that it will remain alive in the Swarm network.
+				Like minded individuals are encouraged to contribute BZZ to the postage batch so that it will remain alive in the Swarm network.
 			</p>
 			<h2>Send BZZ to Top Up the Batch</h2>
 			<p>
 				In order to add funds to the stamp, you may operate the postage stamp
 				contract which resides on the Gnosis Chain network at address{' '}
-				<em>0x6a1A21ECA3aB28BE85C7Ba22b2d6eAE5907c900E</em>. You must first
+				<em>0x30d155478eF27Ab32A1D578BE7b84BC5988aF381</em>. You must first
 				authorise your BZZ fund using the bridged ERC20 contract which can be
 				found at address <em>0xdBF3Ea6F5beE45c02255B2c26a16F300502F68da</em> on
 				the Gnosis Chain network. BZZ can be acquired by sending ETH to the
@@ -121,13 +120,13 @@ const TopUp = () => {
 			<hr />
 			<p>
 				Once connected, enter your chosen amount to top up per chunk, per block
-				(there are currently XXX chunks stampable by the postage batch) into the
+				(there are currently 131072 chunks stampable by the postage batch) into the
 				"Amount" field below, and click "Top Up" to send your transactions to
 				the network.
 			</p>
 			<h3>Create and Send Transactions</h3>
 			<hr />
-			<form onSubmit={(event) => topUp(event)}>
+			<form>
 				<p>
 					<input
 						type="hidden"
@@ -152,7 +151,7 @@ const TopUp = () => {
 					<TimeToLive batchId={batchId} amount={amount} />
 				</p>
 				<p>
-					<button type="submit">Top up</button>
+					<button type="submit" onClick={(event) => topUp(event)}>Top up</button>
 				</p>
 			</form>
 			<hr />
@@ -160,20 +159,20 @@ const TopUp = () => {
 				Once you have pressed the "Top up" button you will be asked to authorise
 				two transactions.
 			</p>
-			<p>Thank you for supporting the Hacker Manifesto!</p>
+			<p>Thank you for supporting A Declaration of Independence of Cyberspace!</p>
 			<h2>More Info</h2>
 			<ul>
 				<li id="postage-stamp-batch-id">
 					Postage Stamp Batch Id:{' '}
 					<strong>
-						7813977b7722e59de8826077a44736116c4aa5c9f31676da812870a
+							7892d29daeb228f8e8122823c505237e03ec519a93a1ca834032ae4de4945239
 					</strong>
 				</li>
 				<li>
 					<a id="hacker-manifesto-address">
-						Hacker Manifesto Swarm Address:{' '}
+						A Declaration of Independence of Cyberspace Swarm Address:{' '}
 						<strong>
-							d755aa1e5b2e059f7013dbdd6e1134fbc00976c5254c176a74ef24f1ce60f06f
+							597ab8b76310194532dafc384ad40613040cd3f33f59781d7520ecc282274b9e
 						</strong>
 					</a>
 				</li>
