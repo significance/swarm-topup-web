@@ -79,7 +79,7 @@ const TopUp = () => {
 				
 
 					{/* v-show="hasPaste" */}
-				<div class="show-paste">
+				<div class="show-paste" style="display:none">
 					{/* <h3>Paste {{hash}}</h3> */}
 					<input class="copy-input" id="copy-input-1" value="url" readonly />
 					{/* v-on:click="copyUrl" */}
@@ -90,7 +90,6 @@ const TopUp = () => {
 						{/* v-model="pasteText" */}
 						<textarea id="bin">pasteText</textarea>
 						{/* v-on:click="createPaste" */}
-						<button id="paste"></button>
 					</div>
 				</div> 
 
@@ -101,7 +100,7 @@ const TopUp = () => {
 						{/* <div contentEditable="true" id="texteditor" placeholder="Paste text here..." @input="onInput"></div> */}
 						{/* v-model="pasteText"  */}
 						<textarea placeholder="Paste text here..."></textarea>
-						<button id="paste" ></button>
+						<div id="stamp-status" ><ul><li>1. Buy Stamp (Cost BZZ X) ☑️</li><li>2. Wait for Batch Propogation (180 seconds) ☑️</li><li>3. Stamp and Upload Chunk ☑️ (store batch info alongside payload)</li></ul></div><button disabled="true" id="paste" ></button>
 					</div>
 				</div> 
 
